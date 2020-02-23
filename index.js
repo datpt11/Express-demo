@@ -1,5 +1,6 @@
 var express = require('express');
 var low = require('lowdb');
+var shortid = require('shortid');
 var FileSync = require('lowdb/adapters/FileSync');
 var adapter = new FileSync('db.json');
 db = low(adapter);
@@ -38,8 +39,16 @@ app.get('/users/search', function(req, res){
 app.get('/users/create', function(req, res){
     res.render('users/create');
 });
+app.get('/users/:id', function(req, res){
+    var id = req.params.id;
+    var user = db.get('users').find({ id: id }).value();
+    res.render('users/view', {
+        user: user
+    });
+});
 // post request
 app.post('/users/create', function(req, res){
+    req.body.id = shortid.generate();
     db.get('users').push(req.body).write(); // res.body đọc dữ liệu từ client gửi lên và chuyển sang object rồi lưu vào req.body
     res.redirect('/users');// điều hướng sau khi create sang trang users
 });
