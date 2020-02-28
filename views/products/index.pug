@@ -1,0 +1,10 @@
+extends ../layouts/common
+block content
+        .d-flex.flex-wrap.justify-content-center
+            each product in products
+                .card.m-2(style='width: 15rem;')
+                    img.card-img-top(src= product.image, alt='')
+                    .card-body
+                        h5.card-title.text1line= product.name
+                        p.card-text.text2line= product.description 
+                        a.btn.btn-primary(href='#') Add to card
