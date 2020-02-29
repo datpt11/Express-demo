@@ -27,6 +27,7 @@ module.exports.get = function(req, res){
 };
 module.exports.postCreate = function(req, res){
     req.body.id = shortid.generate();
+    req.body.avatar = req.file.path.split('/').slice(1).join('/');
     console.log(res.locals);
     db.get('users').push(req.body).write(); // res.body đọc dữ liệu từ client gửi lên và chuyển sang object rồi lưu vào req.body
     res.redirect('/users');// điều hướng sau khi create sang trang users
