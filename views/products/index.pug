@@ -8,3 +8,28 @@ block content
                         h5.card-title.text1line= product.name
                         p.card-text.text2line= product.description 
                         a.btn.btn-primary(href='#') Add to card
+
+            if pages > 0 
+                nav(aria-label='Page navigation example')
+                    ul.pagination
+                        if page == 1
+                            li.page-item.disabled
+                                a.page-link(href='#') Previous
+                            li.page-item.active
+                                a.page-link=page   
+                        else
+                            li.page-item
+                                a.page-link(href='/products?page=' + previous) Previous  
+                            li.page-item
+                                a.page-link(href='/products?page=' + previous)= previous
+                            li.page-item.active
+                                a.page-link=page
+                        if page < pages
+                            li.page-item
+                                a.page-link(href='/products?page=' + next)= next      
+                        if page == pages
+                            li.page-item.disabled
+                                a.page-link(href='/products?page=' + next) Next
+                        else
+                            li.page-item
+                                a.page-link(href='/products?page=' + next) Next

@@ -4,8 +4,14 @@ module.exports.index = function(req, res){
     var perPage = 8; // x item in per page
     var start = (page - 1) * perPage; // (n - 1) * x;
     var end = page * perPage // (n - 1) * x + x = n * x
+    var previous = page - 1;
+    var next = page + 1
     res.render('products/index', {
-        products: db.get('products').value().slice(start, end)
+        products: db.get('products').value().slice(start, end),
+        page: page,
+        pages: Math.ceil(db.get('products').value().length / perPage),
+        previous: previous,
+        next: next
         // C2: Lodash  (.drop and .take)
     }); 
     // var page = parseInt(req.query.page) || 1;
