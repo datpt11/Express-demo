@@ -2,6 +2,8 @@ require('dotenv').config();
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var csurf = require('csurf');
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URL)
 var app = express();
 var transferRoute = require('./routes/transfer.route');
 var userRoute = require('./routes/user.route');
