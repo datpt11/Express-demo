@@ -7,7 +7,7 @@ block content
                     .card-body
                         h5.card-title.text1line= product.name
                         p.card-text.text2line= product.description 
-                        a.btn.btn-primary(href='#') Add to card
+                        a.btn.btn-primary(href='/cart/add/' + product.id) Add to card
 
             if pages > 0 
                 nav(aria-label='Page navigation example')
