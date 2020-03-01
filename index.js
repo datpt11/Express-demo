@@ -5,6 +5,7 @@ var csurf = require('csurf');
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URL)
 var app = express();
+var apiProductRoute = require('./api/routes/product.route');
 var transferRoute = require('./routes/transfer.route');
 var userRoute = require('./routes/user.route');
 var authRoute = require('./routes/auth.route');
@@ -32,6 +33,7 @@ app.use('/auth', authRoute);
 app.use('/products', productRoute);
 app.use('/cart', carRoute);
 app.use('/transfer',authMiddleware.requireAuth, transferRoute);
+app.use('/api/products', apiProductRoute);
 app.listen(port, function(){
     console.log('Server listening on port ' + port);
 });
